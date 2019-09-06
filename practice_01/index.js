@@ -8,9 +8,9 @@ const settingStats = () => {
   stats.dom.style.left = null;
   stats.dom.style.right = 0;
   document.body.appendChild(stats.dom);
-  const calc = () => { stats.begin(); stats.end(); requestAnimationFrame(calc); }
+  const calc = () => { stats.begin(); stats.end(); requestAnimationFrame(calc); };
   calc();
-}
+};
 
 const initApp = async () => {
   console.log('initApp');
@@ -24,11 +24,11 @@ const initApp = async () => {
   await promiseLoad(app.loader);
   const cat = new PIXI.Sprite(app.loader.resources.cat.texture);
   app.stage.addChild(cat);
-}
+};
 
 document.onreadystatechange = () => {
-  if (document.readyState == "complete") {
+  if (document.readyState === 'complete') {
     settingStats();
     initApp();
   }
-}
+};
