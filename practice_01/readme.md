@@ -12,3 +12,5 @@ npm i
 ```bash
 npm start
 ```
+
+![](../result_images/practice_01.png)
