@@ -1,11 +1,29 @@
 import * as PIXI from 'pixi.js';
-const stage = new PIXI.Container();
+import Stats from 'stats.js';
 
-const initApp = () => {
-  console.log('initApp');
-  const renderer = PIXI.autoDetectRenderer(800, 600, document.getElementById('pixi'));
-  renderer.render(stage);
+const settingStats = () => {
+  const stats = new Stats();
+  stats.showPanel(0);
+  stats.dom.style.left = null;
+  stats.dom.style.right = 0;
+  document.body.appendChild(stats.dom);
+  const calc = () => { stats.begin(); stats.end(); requestAnimationFrame(calc); }
+  calc();
 }
 
-document.onreadystatechange = () =>
-  (document.readyState == "complete") && initApp();
+const initApp = async () => {
+  console.log('initApp');
+  const app = new PIXI.Application({
+    width: 600,
+    height: 600,
+    view: document.getElementById('pixi'),
+  });
+  window.app = app;
+}
+
+document.onreadystatechange = () => {
+  if (document.readyState == "complete") {
+    settingStats();
+    initApp();
+  }
+}
